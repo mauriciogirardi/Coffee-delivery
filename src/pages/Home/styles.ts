@@ -27,6 +27,14 @@ export const Center = styled.div`
     }
   }
 
+  @media screen and (max-width: 820px) {
+    gap: 1.5rem;
+
+    > img {
+      width: 300px;
+    }
+  }
+
   @media screen and (max-width: 500px) {
     position: relative;
     flex-direction: column-reverse;
@@ -88,4 +96,36 @@ export const Information = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
+`;
+
+export const ProductsContainer = styled.main`
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.7rem;
+
+  > div {
+    margin-top: 1rem;
+  }
+
+  @media screen and (max-width: 820px) {
+    gap: 0.611rem;
+
+    > div {
+      margin-top: 1.5rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    gap: 1.7rem;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 500px) {
+    align-items: center;
+    flex-direction: column;
+  }
 `;

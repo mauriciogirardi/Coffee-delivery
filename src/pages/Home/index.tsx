@@ -1,8 +1,20 @@
-import { Banner, Center, ContainerHome, Information, Wrapper } from "./styles";
-import imageSvg from "../../assets/cup-coffee.svg";
-import { Header } from "../../components/Header";
-import { TagInfo } from "../../components/TagInfo";
 import { BagSimple, Coffee, Package, Timer } from "phosphor-react";
+
+import imageSvg from "../../assets/cup-coffee.svg";
+
+import {
+  Banner,
+  Center,
+  ContainerHome,
+  Information,
+  ProductsContainer,
+  Wrapper,
+} from "./styles";
+import { CardCoffee } from "../../components/CardCoffee";
+import { TagInfo } from "../../components/TagInfo";
+import { Header } from "../../components/Header";
+
+import { dataProducts } from "../../mock/products-mocks";
 
 export function Home() {
   return (
@@ -48,6 +60,20 @@ export function Home() {
           />
         </Center>
       </Banner>
+
+      <ProductsContainer>
+        {dataProducts.map((product) => (
+          <CardCoffee
+            key={product.id}
+            description={product.description}
+            name={product.name}
+            price={product.price}
+            qtd={product.qtd}
+            type={product.type}
+            image={product.image}
+          />
+        ))}
+      </ProductsContainer>
     </ContainerHome>
   );
 }

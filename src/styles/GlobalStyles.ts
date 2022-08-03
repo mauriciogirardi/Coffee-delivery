@@ -8,14 +8,14 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${({ theme }) => theme["gray-100"]};
+    background-color: ${({ theme }) => theme["gray-50"]};
     color: ${({ theme }) => theme["gray-700"]};
     -webkit-font-smoothing: antialiased;
   }
 
   :focus {
     outline: 0;
-    box-shadow:  0 0 0 1px ${({ theme }) => theme["green-500"]};
+    box-shadow:  0 0 0 1px ${({ theme }) => theme["purple-400"]};
     border-radius: 5px;
   }
 

@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { HandbagSimple, MapPin } from "phosphor-react";
+import { MapPin, ShoppingCart } from "phosphor-react";
 
 import {
   BagButton,
@@ -21,7 +21,7 @@ export function Header() {
         </Location>
 
         <BagButton>
-          <HandbagSimple size={22} weight="fill" />
+          <ShoppingCart size={22} weight="fill" />
           <TotalItemBag>3</TotalItemBag>
         </BagButton>
       </Wrapper>
