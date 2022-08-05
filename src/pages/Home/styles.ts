@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import backgroundPng from "../../assets/background.png";
 
-export const ContainerHome = styled.section``;
+export const ContainerHome = styled.section`
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
 
 export const Center = styled.div`
   padding: 1.5rem 1rem;
@@ -99,13 +103,10 @@ export const Information = styled.div`
 `;
 
 export const ProductsContainer = styled.main`
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-
   display: flex;
   flex-wrap: wrap;
   gap: 1.7rem;
+  padding: 3rem 0;
 
   > div {
     margin-top: 1rem;
@@ -128,4 +129,11 @@ export const ProductsContainer = styled.main`
     align-items: center;
     flex-direction: column;
   }
+`;
+
+export const Title = styled.h1`
+  font-family: "Baloo 2", cursive;
+  font-size: 2rem;
+  color: ${({ theme }) => theme["gray-900"]};
+  font-weight: bold;
 `;

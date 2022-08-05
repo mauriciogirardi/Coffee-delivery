@@ -7,7 +7,7 @@ export const ButtonQtdProductContainer = styled.div`
 `;
 
 const ButtonQtd = styled.button`
-  height: 2.275rem;
+  height: 2rem;
   width: 1.8rem;
   background-color: ${({ theme }) => theme["purple-100"]};
   color: ${({ theme }) => theme["purple-900"]};

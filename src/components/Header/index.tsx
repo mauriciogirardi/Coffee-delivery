@@ -2,7 +2,7 @@ import { Logo } from "./Logo";
 import { MapPin, ShoppingCart } from "phosphor-react";
 
 import {
-  BagButton,
+  BagButtonLink,
   HeaderContainer,
   Location,
   TotalItemBag,
@@ -20,10 +20,10 @@ export function Header() {
           São Francisco do Sul
         </Location>
 
-        <BagButton>
+        <BagButtonLink to="/checkout">
           <ShoppingCart size={22} weight="fill" />
           <TotalItemBag>3</TotalItemBag>
-        </BagButton>
+        </BagButtonLink>
       </Wrapper>
     </HeaderContainer>
   );

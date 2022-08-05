@@ -15,7 +15,7 @@ interface CardCoffeeProps {
   type: string[];
   name: string;
   description: string;
-  price: number;
+  amount: number;
   qtd: number;
 }
 
@@ -23,7 +23,7 @@ export function CardCoffee({
   description,
   image,
   name,
-  price,
+  amount,
   qtd,
   type,
 }: CardCoffeeProps) {
@@ -49,7 +49,7 @@ export function CardCoffee({
       <Wrapper>
         <Price>
           <span>R$</span>
-          {formattedCurrency(price)}
+          {formattedCurrency({ amount, showCurrency: false })}
         </Price>
         <ButtonQtdProduct />
         <ButtonShoppingCar />

@@ -8,6 +8,7 @@ import {
   ContainerHome,
   Information,
   ProductsContainer,
+  Title,
   Wrapper,
 } from "./styles";
 import { CardCoffee } from "../../components/CardCoffee";
@@ -18,7 +19,7 @@ import { dataProducts } from "../../mock/products-mocks";
 
 export function Home() {
   return (
-    <ContainerHome>
+    <>
       <Header />
 
       <Banner>
@@ -61,19 +62,22 @@ export function Home() {
         </Center>
       </Banner>
 
-      <ProductsContainer>
-        {dataProducts.map((product) => (
-          <CardCoffee
-            key={product.id}
-            description={product.description}
-            name={product.name}
-            price={product.price}
-            qtd={product.qtd}
-            type={product.type}
-            image={product.image}
-          />
-        ))}
-      </ProductsContainer>
-    </ContainerHome>
+      <ContainerHome>
+        <Title>Nossos cafés</Title>
+        <ProductsContainer>
+          {dataProducts.map((product) => (
+            <CardCoffee
+              key={product.id}
+              description={product.description}
+              name={product.name}
+              amount={product.price}
+              qtd={product.qtd}
+              type={product.type}
+              image={product.image}
+            />
+          ))}
+        </ProductsContainer>
+      </ContainerHome>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -26,7 +27,7 @@ export const Location = styled.div`
   gap: 0.2rem;
 `;
 
-export const BagButton = styled.button`
+export const BagButtonLink = styled(Link)`
   background-color: ${({ theme }) => theme["yellow-100"]};
   color: ${({ theme }) => theme["yellow-900"]};
   position: relative;
@@ -35,6 +36,16 @@ export const BagButton = styled.button`
   border: 0;
   height: 2.375rem;
   width: 2.375rem;
+  transition: all 0.2s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: ${({ theme }) => theme["yellow-500"]};
+    color: ${({ theme }) => theme.white};
+  }
 `;
 
 export const TotalItemBag = styled.p`
