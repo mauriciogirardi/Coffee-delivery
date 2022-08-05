@@ -6,6 +6,12 @@ export const CheckoutContainer = styled.section`
   display: flex;
   align-items: flex-start;
   gap: 2rem;
+
+  @media screen and (max-width: 820px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+  }
 `;
 
 export const Title = styled.h3`
@@ -28,6 +34,10 @@ export const Form = styled.form`
   padding: 2.5rem;
   background-color: ${({ theme }) => theme["gray-100"]};
   border-radius: 6px;
+
+  @media screen and (max-width: 500px) {
+    padding: 1.5rem;
+  }
 `;
 
 export const WrapperForm = styled.div`
@@ -59,6 +69,11 @@ export const WrapperForm = styled.div`
   div:nth-child(7) {
     grid-area: 4 / 3 / 5 / 4;
   }
+
+  @media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const Payment = styled.div`
@@ -66,6 +81,10 @@ export const Payment = styled.div`
   padding: 2.5rem;
   background-color: ${({ theme }) => theme["gray-100"]};
   border-radius: 6px;
+
+  @media screen and (max-width: 500px) {
+    padding: 1.5rem;
+  }
 `;
 
 export const Order = styled.div`
@@ -75,6 +94,15 @@ export const Order = styled.div`
   padding: 2.5rem;
   background-color: ${({ theme }) => theme["gray-100"]};
   border-radius: 6px 46px;
+
+  @media screen and (max-width: 820px) {
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  @media screen and (max-width: 500px) {
+    padding: 1.5rem;
+  }
 `;
 
 export const ButtonCheckout = styled.button`
@@ -151,6 +179,10 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 export const AutoOverflow = styled.div`
