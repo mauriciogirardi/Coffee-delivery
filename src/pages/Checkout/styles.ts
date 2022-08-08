@@ -6,11 +6,16 @@ export const CheckoutContainer = styled.section`
   display: flex;
   align-items: flex-start;
   gap: 2rem;
+  margin-top: 10rem;
 
   @media screen and (max-width: 820px) {
     flex-direction: column;
     align-items: center;
     gap: 4rem;
+  }
+
+  @media screen and (max-width: 500px) {
+    margin-top: 9rem;
   }
 `;
 
@@ -28,63 +33,6 @@ export const Title = styled.h3`
 export const FormWrapper = styled.div`
   position: relative;
   flex: 1;
-`;
-
-export const Form = styled.form`
-  padding: 2.5rem;
-  background-color: ${({ theme }) => theme["gray-100"]};
-  border-radius: 6px;
-
-  @media screen and (max-width: 500px) {
-    padding: 1.5rem;
-  }
-`;
-
-export const WrapperForm = styled.div`
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-column-gap: 0.75rem;
-  grid-row-gap: 1rem;
-
-  div:nth-child(1) {
-    grid-area: 1 / 1 / 2 / 2;
-  }
-  div:nth-child(2) {
-    grid-area: 2 / 1 / 3 / 4;
-  }
-  div:nth-child(3) {
-    grid-area: 3 / 1 / 4 / 2;
-  }
-  div:nth-child(4) {
-    grid-area: 3 / 2 / 4 / 4;
-  }
-  div:nth-child(5) {
-    grid-area: 4 / 1 / 5 / 2;
-  }
-  div:nth-child(6) {
-    grid-area: 4 / 2 / 5 / 3;
-  }
-  div:nth-child(7) {
-    grid-area: 4 / 3 / 5 / 4;
-  }
-
-  @media screen and (max-width: 500px) {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-
-export const Payment = styled.div`
-  margin-top: 1rem;
-  padding: 2.5rem;
-  background-color: ${({ theme }) => theme["gray-100"]};
-  border-radius: 6px;
-
-  @media screen and (max-width: 500px) {
-    padding: 1.5rem;
-  }
 `;
 
 export const Order = styled.div`
@@ -119,69 +67,13 @@ export const ButtonCheckout = styled.button`
   font-size: 0.875rem;
   transition: all 0.2s;
 
-  &:hover {
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${({ theme }) => theme["yellow-100"]};
+  }
+
+  &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme["yellow-900"]};
-  }
-`;
-
-export const DescriptionOrder = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding-top: 1rem;
-`;
-
-export const WrapperDescriptionOrder = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.875rem;
-  color: ${({ theme }) => theme["gray-700"]};
-
-  h2 {
-    color: ${({ theme }) => theme["gray-800"]};
-    font-size: 1.25rem;
-  }
-`;
-
-export const ButtonPayment = styled.button`
-  cursor: pointer;
-  width: 100%;
-  height: 3rem;
-  border: 1px solid transparent;
-  background-color: ${({ theme }) => theme["gray-300"]};
-  border-radius: 6px;
-  font-size: 0.75rem;
-  transition: all 0.2s;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  gap: 0.9rem;
-
-  svg {
-    color: ${({ theme }) => theme["purple-900"]};
-  }
-
-  &:hover {
-    background-color: ${({ theme }) => theme["gray-500"]};
-  }
-
-  &.selected {
-    background-color: ${({ theme }) => theme["purple-100"]};
-    border-color: ${({ theme }) => theme["purple-900"]};
-  }
-`;
-
-export const Wrapper = styled.div`
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
   }
 `;
 
@@ -200,5 +92,28 @@ export const AutoOverflow = styled.div`
   ::-webkit-scrollbar-thumb {
     margin-left: 1rem;
     background: #dad7d7;
+  }
+`;
+
+export const WarningContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 20rem);
+  gap: 2rem;
+
+  > h1 {
+    text-align: center;
+    font-family: "Baloo 2", cursive;
+    font-size: 2rem;
+    color: ${({ theme }) => theme["gray-700"]};
+    font-weight: bold;
+  }
+
+  > svg {
+    color: ${({ theme }) => theme["yellow-500"]};
+    font-size: 10rem;
   }
 `;

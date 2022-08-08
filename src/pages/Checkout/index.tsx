@@ -1,110 +1,106 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollarSimple,
-  MapPinLine,
-  Money,
-} from "phosphor-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ShoppingCartSimple } from "phosphor-react";
+
 import { CardCoffeeSelected } from "../../components/CardCoffeeSelected";
-import { InfoCard } from "../../components/InfoCard";
-import { Input } from "../../components/Input";
+import { useCart } from "../../context/Cart";
+
 import {
   AutoOverflow,
   ButtonCheckout,
-  ButtonPayment,
   CheckoutContainer,
-  DescriptionOrder,
-  Form,
   FormWrapper,
   Order,
-  Payment,
   Title,
-  Wrapper,
-  WrapperDescriptionOrder,
-  WrapperForm,
+  WarningContent,
 } from "./styles";
+import { DataAddress, FormAddress } from "./components/FormAddress";
+import { parseObjToQueryString } from "../../utils/parseObjToQueryString";
+import { PaymentMethod } from "./components/PaymentMethod";
+import { PaymentType } from "../../utils/dataTypePayment";
+import { Amount } from "./components/Amount";
 
-import imgCoffee from "../../mock/coffee-svgs/expresso-tradicional.svg";
-import { formattedCurrency } from "../../utils/formattedCurrency ";
+// https://viacep.com.br/ws/89240000/json/
+
+const initialAddress: DataAddress = {
+  zip: "",
+  street: "",
+  number: "",
+  complement: "",
+  neighborhood: "",
+  city: "",
+  uf: "",
+};
 
 export function Checkout() {
+  const navigate = useNavigate();
+  const [address, setAddress] = useState(initialAddress);
+  const { productsSelectedCart, productsCart, removerAllCart } = useCart();
+  const [paymentSelected, setPaymentSelected] = useState<PaymentType>();
+
+  const isFormFilled = () => {
+    const copyAddress = { ...address };
+    delete copyAddress.complement;
+    return !Object.values(copyAddress).every(Boolean);
+  };
+
+  const onSubmit = () => {
+    const order = {
+      ...address,
+      payment: paymentSelected,
+      products: [...productsSelectedCart],
+    };
+
+    console.log("PEDIDO REALIZADO: ", order);
+
+    const query = parseObjToQueryString({
+      ...address,
+      payment: paymentSelected,
+    });
+
+    navigate(`/checkout/success/address?${query}`);
+    removerAllCart();
+  };
+
   return (
     <CheckoutContainer>
-      <FormWrapper>
-        <Title>Complete seu pedido</Title>
+      {productsCart.length ? (
+        <>
+          <FormWrapper>
+            <Title>Complete seu pedido</Title>
 
-        <Form>
-          <InfoCard
-            description="Informe o endereço onde deseja receber seu pedido"
-            title="Endereço de Entrega"
-            icon={MapPinLine}
-            iconColor="yellow-500"
-          />
+            <FormAddress address={address} setAddress={setAddress} />
+            <PaymentMethod
+              paymentSelected={paymentSelected}
+              setPaymentSelected={setPaymentSelected}
+            />
+          </FormWrapper>
 
-          <WrapperForm>
-            <Input className="div1" placeholder="CEP" />
-            <Input className="div2" placeholder="Rua" />
-            <Input placeholder="Número" />
-            <Input placeholder="Complemento" isOptional />
-            <Input placeholder="Bairro" />
-            <Input placeholder="Cidade" />
-            <Input placeholder="UF" />
-          </WrapperForm>
-        </Form>
+          <Order>
+            <Title>Cafés selecionados</Title>
+            <AutoOverflow>
+              {productsSelectedCart &&
+                productsSelectedCart.map((product) => (
+                  <CardCoffeeSelected key={product.id} product={product} />
+                ))}
+            </AutoOverflow>
 
-        <Payment>
-          <InfoCard
-            description="O pagamento é feito na entrega. Escolha a forma que deseja pagar"
-            title="Pagamento"
-            icon={CurrencyDollarSimple}
-            iconColor="purple-400"
-          />
+            <Amount />
 
-          <Wrapper>
-            <ButtonPayment className="selected">
-              <CreditCard size={16} />
-              Cartão de crédito
-            </ButtonPayment>
-            <ButtonPayment>
-              <Bank size={16} />
-              cartão de débito
-            </ButtonPayment>
-            <ButtonPayment>
-              <Money size={16} />
-              dinheiro
-            </ButtonPayment>
-          </Wrapper>
-        </Payment>
-      </FormWrapper>
-
-      <Order>
-        <Title>Cafés selecionados</Title>
-
-        <AutoOverflow>
-          <CardCoffeeSelected
-            image={imgCoffee}
-            title="Expresso Com Leite"
-            amount={8.8}
-          />
-        </AutoOverflow>
-
-        <DescriptionOrder>
-          <WrapperDescriptionOrder>
-            <span>Total de itens</span>
-            <span>{formattedCurrency({ amount: 26.3 })}</span>
-          </WrapperDescriptionOrder>
-          <WrapperDescriptionOrder>
-            <span>Entrega</span>
-            <span>{formattedCurrency({ amount: 26.3 })}</span>
-          </WrapperDescriptionOrder>
-          <WrapperDescriptionOrder>
-            <h2>Total</h2>
-            <h2>{formattedCurrency({ amount: 26.3 })}</h2>
-          </WrapperDescriptionOrder>
-        </DescriptionOrder>
-
-        <ButtonCheckout>confirmar pedido</ButtonCheckout>
-      </Order>
+            <ButtonCheckout
+              disabled={isFormFilled() || !paymentSelected}
+              onClick={onSubmit}
+            >
+              confirmar pedido
+            </ButtonCheckout>
+          </Order>
+        </>
+      ) : (
+        <WarningContent>
+          <h1>Você não tem nenhuma compra no seu carrinho!</h1>
+          <ShoppingCartSimple />
+        </WarningContent>
+      )}
     </CheckoutContainer>
   );
 }
