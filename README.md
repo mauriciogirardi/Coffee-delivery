@@ -30,11 +30,11 @@ This is a challenge proposed by Rocketseat on the ReactJs track, we received the
 
 ```bash
   # clone the project
-  Todo
+  git clone https://github.com/mauriciogirardi/Coffee-delivery.git
   # Open the project
-  Todo
+  cd coffee-delivery
   # Install
-  Todo
+  yarn || npm i
 ```
 
 ### :paintbrush: Layout
