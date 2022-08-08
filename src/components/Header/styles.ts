@@ -1,13 +1,26 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.div`
+  background-color: ${({ theme }) => theme["gray-50"]};
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+`;
+
+export const CenterHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 1rem;
   max-width: 1140px;
   margin: 0 auto;
+
+  @media screen and (max-width: 500px) {
+    padding: 1rem;
+  }
 `;
 
 export const Wrapper = styled.div`

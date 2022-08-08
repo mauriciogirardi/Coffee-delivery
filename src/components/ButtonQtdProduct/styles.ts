@@ -19,7 +19,7 @@ const ButtonQtd = styled.button`
   align-items: center;
   justify-content: center;
 
-  &:hover {
+  &:hover:not(:disabled) {
     color: ${({ theme }) => theme["purple-900"]};
   }
 `;
@@ -30,11 +30,17 @@ export const ButtonMinus = styled(ButtonQtd)`
 
 export const ButtonPlus = styled(ButtonQtd)`
   border-radius: 0 6px 6px 0;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${({ theme }) => theme["gray-400"]};
+    color: ${({ theme }) => theme["gray-600"]};
+  }
 `;
 
 export const Value = styled.span`
   display: block;
-  height: 2.275rem;
+  height: 2rem;
   padding: 0 0.3rem;
   background-color: ${({ theme }) => theme["purple-100"]};
   color: ${({ theme }) => theme["gray-900"]};

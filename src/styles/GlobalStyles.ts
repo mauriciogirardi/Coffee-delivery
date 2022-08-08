@@ -25,5 +25,13 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1rem;
   }
 
-  // font-family: 'Baloo 2', cursive;
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+  }
 `;

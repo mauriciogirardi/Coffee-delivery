@@ -1,6 +1,5 @@
 import { formattedCurrency } from "../../utils/formattedCurrency ";
 import { ButtonQtdProduct } from "../ButtonQtdProduct";
-import { ButtonShoppingCar } from "../ButtonShoppingCar";
 import {
   CardCoffeeContainer,
   Description,
@@ -10,27 +9,37 @@ import {
   Wrapper,
 } from "./styles";
 
+import { dataProducts } from "../../mock/products-mocks";
+import { useCart } from "../../context/Cart";
+import { ShoppingCart, Trash } from "phosphor-react";
+import { Button } from "../Button";
+
 interface CardCoffeeProps {
-  image: string;
-  type: string[];
-  name: string;
-  description: string;
-  amount: number;
-  qtd: number;
+  product: {
+    id: number;
+    image: string;
+    type: string[];
+    name: string;
+    description: string;
+    amount: number;
+    stock: number;
+  };
 }
 
-export function CardCoffee({
-  description,
-  image,
-  name,
-  amount,
-  qtd,
-  type,
-}: CardCoffeeProps) {
+export function CardCoffee({ product }: CardCoffeeProps) {
+  const {
+    addProductToCart,
+    renderQtdOfProductSelected,
+    removeProductsSelected,
+  } = useCart();
+
+  const amount = renderQtdOfProductSelected(product.id, true) || 0;
+  const renderButtonClearCart = amount > 0 ? true : false;
+
   const renderTypeCoffee = () => {
     return (
       <TypeCoffee>
-        {type?.map((type, index) => (
+        {product.type?.map((type, index) => (
           <span key={index}>{type}</span>
         ))}
       </TypeCoffee>
@@ -39,20 +48,35 @@ export function CardCoffee({
 
   return (
     <CardCoffeeContainer>
-      <img src={image} alt="Imagem de uma xícara com cafe" />
+      <img src={product.image} alt="Imagem de uma xícara com cafe" />
 
-      {type.length && renderTypeCoffee()}
+      {product.type.length && renderTypeCoffee()}
 
-      <Title>{name}</Title>
-      <Description>{description}</Description>
+      <Title>{product.name}</Title>
+      <Description>{product.description}</Description>
 
       <Wrapper>
         <Price>
           <span>R$</span>
-          {formattedCurrency({ amount, showCurrency: false })}
+          {formattedCurrency({ amount: product.amount, showCurrency: false })}
         </Price>
-        <ButtonQtdProduct />
-        <ButtonShoppingCar />
+        <ButtonQtdProduct max={product.stock} productId={product.id} />
+
+        {renderButtonClearCart ? (
+          <Button
+            onClick={() => removeProductsSelected(product.id)}
+            icon={Trash}
+            background="red-500"
+            backgroundHover="red-700"
+          />
+        ) : (
+          <Button
+            onClick={() => addProductToCart(product.id)}
+            icon={ShoppingCart}
+            background="purple-400"
+            backgroundHover="purple-900"
+          />
+        )}
       </Wrapper>
     </CardCoffeeContainer>
   );

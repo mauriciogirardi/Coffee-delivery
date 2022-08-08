@@ -3,7 +3,7 @@ import { lightTheme } from "../../styles/themes/light";
 import { ContainerTahInfo } from "./styles";
 
 interface TagInfoProps {
-  title: string;
+  title: string | JSX.Element;
   icon?: React.ForwardRefExoticComponent<
     IconProps & React.RefAttributes<SVGSVGElement>
   >;
@@ -22,7 +22,7 @@ export function TagInfo({
           <Icon size={16} weight="fill" />
         </div>
       )}
-      <p>{title}</p>
+      {typeof title === "function" ? title : <p>{title}</p>}
     </ContainerTahInfo>
   );
 }

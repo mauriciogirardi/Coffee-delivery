@@ -1,4 +1,5 @@
 import { Minus, Plus } from "phosphor-react";
+import { useCart } from "../../context/Cart";
 import {
   ButtonMinus,
   ButtonPlus,
@@ -6,14 +7,33 @@ import {
   Value,
 } from "./styles";
 
-export function ButtonQtdProduct() {
+interface ButtonQtdProductProps {
+  max?: number;
+  productId: number;
+}
+
+export function ButtonQtdProduct({ max, productId }: ButtonQtdProductProps) {
+  const { addProductToCart, removeProductOfCart, renderQtdOfProductSelected } =
+    useCart();
+
+  const amount = renderQtdOfProductSelected(productId, true) || 0;
+
+  const disabledButtonMinus = amount <= 0 ? true : false;
+  const disabledButtonLess = !!max ? (amount === max ? true : false) : false;
+
   return (
     <ButtonQtdProductContainer>
-      <ButtonMinus>
+      <ButtonMinus
+        disabled={disabledButtonMinus}
+        onClick={() => removeProductOfCart(productId)}
+      >
         <Minus />
       </ButtonMinus>
-      <Value>50</Value>
-      <ButtonPlus>
+      <Value>{renderQtdOfProductSelected(productId)}</Value>
+      <ButtonPlus
+        disabled={disabledButtonLess}
+        onClick={() => addProductToCart(productId, max)}
+      >
         <Plus />
       </ButtonPlus>
     </ButtonQtdProductContainer>

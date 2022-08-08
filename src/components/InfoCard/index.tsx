@@ -17,7 +17,6 @@ export function InfoCard({
   iconColor = "gray-900",
   icon: Icon,
 }: InfoCardProps) {
-  console.log(!!Icon);
   return (
     <InfoCardContainer>
       {!!Icon && <Icon size={22} color={lightTheme[iconColor]} />}

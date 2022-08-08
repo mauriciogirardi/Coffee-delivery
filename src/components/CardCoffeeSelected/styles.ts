@@ -36,28 +36,3 @@ export const Amount = styled.div`
   align-items: center;
   gap: 8px;
 `;
-
-export const ButtonRemove = styled.button`
-  border: 0;
-  cursor: pointer;
-  text-transform: uppercase;
-  border-radius: 6px;
-  height: 2rem;
-  width: 5.688rem;
-  background-color: ${({ theme }) => theme["gray-400"]};
-  font-size: 0.75rem;
-  transition: background-color 0.2s;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-
-  :hover {
-    background-color: ${({ theme }) => theme["gray-500"]};
-  }
-
-  svg {
-    color: ${({ theme }) => theme["purple-900"]};
-  }
-`;
