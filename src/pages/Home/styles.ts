@@ -57,10 +57,13 @@ export const Banner = styled.div`
   height: 34rem;
   background-image: url(${backgroundPng});
   object-fit: contain;
+  margin-top: 6rem;
 
   @media screen and (max-width: 768px) {
     height: 24rem;
+    margin-top: 3rem;
   }
+
   @media screen and (max-width: 500px) {
     height: 21rem;
   }
@@ -136,4 +139,8 @@ export const Title = styled.h1`
   font-size: 2rem;
   color: ${({ theme }) => theme["gray-900"]};
   font-weight: bold;
+
+  @media screen and (max-width: 500px) {
+    margin-top: 2rem;
+  }
 `;
