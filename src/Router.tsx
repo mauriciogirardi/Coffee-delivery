@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { DefaultLayout } from "./layouts/DefaultLayout";
 import { Checkout } from "./pages/Checkout";
+import { Success } from "./pages/Success";
 import { Home } from "./pages/Home";
 
 export function Router() {
@@ -10,6 +11,7 @@ export function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/checkout" element={<DefaultLayout />}>
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/success/:address" element={<Success />} />
       </Route>
     </Routes>
   );
