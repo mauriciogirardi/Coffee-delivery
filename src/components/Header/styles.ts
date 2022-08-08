@@ -20,6 +20,10 @@ export const CenterHeader = styled.header`
 
   @media screen and (max-width: 500px) {
     padding: 1rem;
+
+    > a > img {
+      width: 68px;
+    }
   }
 `;
 

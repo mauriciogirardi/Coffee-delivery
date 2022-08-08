@@ -31,6 +31,18 @@ export const SuccessWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  @media screen and (max-width: 768px) {
+    > img {
+      width: 350px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    > img {
+      display: none;
+    }
+  }
 `;
 
 export const SuccessDescription = styled.div`
@@ -41,4 +53,8 @@ export const SuccessDescription = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;

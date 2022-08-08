@@ -65,7 +65,8 @@ export const Banner = styled.div`
   }
 
   @media screen and (max-width: 500px) {
-    height: 21rem;
+    height: 23rem;
+    margin-top: 7rem;
   }
 `;
 

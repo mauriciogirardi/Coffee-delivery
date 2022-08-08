@@ -28,6 +28,10 @@ export const Title = styled.h3`
   position: absolute;
   top: -2.5rem;
   left: 0;
+
+  @media screen and (max-width: 500px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const FormWrapper = styled.div`
